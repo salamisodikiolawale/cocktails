@@ -1,0 +1,1 @@
+Le dossier shared contient la liste des elements partager dans toute  l'app

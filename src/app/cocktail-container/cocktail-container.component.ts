@@ -1,41 +1,45 @@
-import { Component, OnInit } from '@angular/core';
-import { Cocktail } from '../interfaces/cocktail.interface';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { Cocktail } from '../shared/interfaces/cocktail.interface';
+import { CocktailService } from '../shared/services/cocktail.service';
 
 @Component({
   selector: 'app-cocktail-container',
   templateUrl: './cocktail-container.component.html',
   styleUrls: ['./cocktail-container.component.scss'],
 })
-export class CocktailContainerComponent implements OnInit {
-  public cocktails: Cocktail[] = [
-    {
-      name: 'Sidecar',
-      img: 'https://boiremixologie.com/cocktails/sidecar',
-      description:
-        "Le passé de ce cocktail est assez flou. Certaines histoires racontent que le Sidecar est originaire de Londres, d’autres insistent qu'il est né à Paris. Chose certaine, le nom est pour honorer un capitaine de la Première Guerre mondiale qui se promenait en moto du même nom.",
-    },
-    {
-      name: 'Le Old Fashioned',
-      img: 'https://maisonfoody.com/sites/default/files/styles/article_paragraph_image/public/2019-11/aquavit-fresh.jpg?itok=C17K5mqQ',
-      description:
-        'Pour la cinquième année classé premier, le Old fashionned se cramponne au sommet ! C’est le roi des cocktails ! Il consiste en un sucre imbibé d’amer sur lequel on verse du whisky.',
-    },
-    {
-      name: 'la Sangria',
-      img: 'https://maisonfoody.com/sites/default/files/styles/article_paragraph_image/public/2019-11/sangria.jpg?itok=LjVLCYpj',
-      description:
-        'Offrez à vos invités un petit détour par l’Espagne avec une Sangria rouge (il existe également des versions blanches et rose). ',
-    },
-  ];
+export class CocktailContainerComponent implements OnInit, OnDestroy {
+  public cocktails: Cocktail[] = [];
 
   public selectedCocktails!: Cocktail;
-  constructor() {}
 
-  public selectCocktail(index: number): void {
-    this.selectedCocktails = this.cocktails[index];
+  public subscription: Subscription = new Subscription();
+
+  constructor(private cocktailService: CocktailService) {}
+
+  //ngOnInit(): est le hook de prédilection pour recupere de la data
+  ngOnInit(): void {
+    //Inscription a la recuperation de tout les cocktails
+    this.subscription.add(
+      this.cocktailService.cocktails$.subscribe(
+        (cocktails: Cocktail[]) => (this.cocktails = cocktails)
+      )
+    );
+
+    //Inscription a la recuperation du cocktail selectionne
+    this.subscription.add(
+      this.cocktailService.selectedCocktail$.subscribe(
+        (selectedCocktails: Cocktail) =>
+          (this.selectedCocktails = selectedCocktails)
+      )
+    );
   }
 
-  ngOnInit(): void {
-    this.selectedCocktails = this.cocktails[0];
+  public selectCocktail(index: number): void {
+    this.cocktailService.selectCocktail(index);
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }
