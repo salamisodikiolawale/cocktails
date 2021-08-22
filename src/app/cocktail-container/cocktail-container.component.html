@@ -1,4 +1,20 @@
 <div class="container d-flex flex-row">
-  <app-cocktail-list class="flex-fill flex-50 pr-10"></app-cocktail-list>
-  <app-cocktail-detail class="flex-fill flex-50 pl-10"></app-cocktail-detail>
+  <!-- 
+      **(changeCocktail)="selectCocktail($event)"
+          **changeCocktail est un event output depuis  app-cocktail-list
+          **selectCocktail($event) reception ce event au niveau du containt-container
+
+      **[cocktails]="cocktails" 
+          **[cocktails] recuperer au niveau app-cocktail-list grace au binding input
+          **cocktails considere commme une expression javascript par angular dans containt-conteneur
+   -->
+  <app-cocktail-list
+    (changeCocktail)="selectCocktail($event)"
+    [cocktails]="cocktails"
+    class="flex-fill flex-50 pr-10"
+  ></app-cocktail-list>
+  <app-cocktail-detail
+    [cocktail]="selectedCocktails"
+    class="flex-fill flex-50 pl-10"
+  ></app-cocktail-detail>
 </div>
