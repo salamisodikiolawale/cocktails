@@ -104,17 +104,22 @@ body {
 }
 
 //theme
-.list-primary {
+
+.list-primary-action {
   li {
-    padding: 10px 15px;
-    border: 1px solid var(--lightgray);
-    border-top: 0;
     &:hover {
       background-color: var(--accent);
       color: white;
       cursor: pointer;
     }
-    transition: all 0.4s;
+    transition: background-color 0.4s;
+  }
+}
+.list-primary {
+  li {
+    padding: 10px 15px;
+    border: 1px solid var(--lightgray);
+    border-top: 0;
   }
 }
 
@@ -143,6 +148,19 @@ li:first-child {
 li:last-child {
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
+}
+
+.badge {
+  background-color: var(--secondary);
+  border-radius: 3px;
+  padding: 2px 5px;
+  color: white;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.active {
+  background-color: var(--secondary);
 }
 
 //debug

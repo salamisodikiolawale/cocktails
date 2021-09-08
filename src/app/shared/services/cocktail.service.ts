@@ -12,18 +12,48 @@ export class CocktailService {
       img: 'https://boiremixologie.com/cocktails/sidecar',
       description:
         "Le passé de ce cocktail est assez flou. Certaines histoires racontent que le Sidecar est originaire de Londres, d’autres insistent qu'il est né à Paris. Chose certaine, le nom est pour honorer un capitaine de la Première Guerre mondiale qui se promenait en moto du même nom.",
+      ingredients: [
+        {
+          name: 'orange',
+          quantity: 1,
+        },
+        {
+          name: 'banane',
+          quantity: 1,
+        },
+      ],
     },
     {
       name: 'Le Old Fashioned',
       img: 'https://maisonfoody.com/sites/default/files/styles/article_paragraph_image/public/2019-11/aquavit-fresh.jpg?itok=C17K5mqQ',
       description:
         'Pour la cinquième année classé premier, le Old fashionned se cramponne au sommet ! C’est le roi des cocktails ! Il consiste en un sucre imbibé d’amer sur lequel on verse du whisky.',
+      ingredients: [
+        {
+          name: 'orange',
+          quantity: 1,
+        },
+        {
+          name: 'banane',
+          quantity: 1,
+        },
+      ],
     },
     {
       name: 'la Sangria',
       img: 'https://maisonfoody.com/sites/default/files/styles/article_paragraph_image/public/2019-11/sangria.jpg?itok=LjVLCYpj',
       description:
         'Offrez à vos invités un petit détour par l’Espagne avec une Sangria rouge (il existe également des versions blanches et rose). ',
+      ingredients: [
+        {
+          name: 'orange',
+          quantity: 1,
+        },
+        {
+          name: 'banane',
+          quantity: 1,
+        },
+      ],
     },
   ]);
 
