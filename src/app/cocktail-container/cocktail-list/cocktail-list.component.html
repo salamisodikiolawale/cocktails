@@ -1,11 +1,11 @@
 <h3 class="mb-20">Liste des cocktails</h3>
 <ul class="list-primary mb-20">
   <li
-    [appSelected]="cocktail.name === selectedCocktails.name"
-    (click)="selectedCocktail(index)"
+    [routerLink]="[index]"
+    routerLinkActive="active"
     *ngFor="let cocktail of cocktails; let index = index"
   >
     {{ cocktail.name }}
   </li>
 </ul>
-<button class="btn btn-primary">Ajouter un cocktail</button>
+<button routerLink="new" class="btn btn-primary">Ajouter un cocktail</button>

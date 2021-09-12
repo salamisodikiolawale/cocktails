@@ -6,18 +6,13 @@ import { Ingredient } from '../interfaces/ingredient.interface';
   providedIn: 'root',
 })
 export class PanierService {
-  public ingredients$: BehaviorSubject<Ingredient[]> = new BehaviorSubject([
-    {
-      name: 'test',
-      quantity: 0,
-    },
-  ]);
+  public ingredients$: BehaviorSubject<Ingredient[] | null> =
+    new BehaviorSubject<Ingredient[] | null>(null);
   constructor() {}
 
   addToPanier(ingredients: Ingredient[]): void {
     const currentValue = this.ingredients$.value;
     if (currentValue) {
-      console.log(currentValue);
       const obj = [...currentValue, ...ingredients].reduce(
         (acc: { [x: string]: number }, value: Ingredient) => {
           if (acc[value.name]) {
@@ -36,6 +31,8 @@ export class PanierService {
       }));
 
       this.ingredients$.next(result);
+    } else {
+      this.ingredients$.next(ingredients);
     }
   }
 }

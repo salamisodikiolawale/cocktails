@@ -11,8 +11,6 @@ import { CocktailService } from '../shared/services/cocktail.service';
 export class CocktailContainerComponent implements OnInit, OnDestroy {
   public cocktails: Cocktail[] = [];
 
-  public selectedCocktails!: Cocktail;
-
   public subscription: Subscription = new Subscription();
 
   constructor(private cocktailService: CocktailService) {}
@@ -25,18 +23,6 @@ export class CocktailContainerComponent implements OnInit, OnDestroy {
         (cocktails: Cocktail[]) => (this.cocktails = cocktails)
       )
     );
-
-    //Inscription a la recuperation du cocktail selectionne
-    this.subscription.add(
-      this.cocktailService.selectedCocktail$.subscribe(
-        (selectedCocktails: Cocktail) =>
-          (this.selectedCocktails = selectedCocktails)
-      )
-    );
-  }
-
-  public selectCocktail(index: number): void {
-    this.cocktailService.selectCocktail(index);
   }
 
   ngOnDestroy(): void {

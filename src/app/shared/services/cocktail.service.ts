@@ -13,14 +13,9 @@ export class CocktailService {
       description:
         "Le passé de ce cocktail est assez flou. Certaines histoires racontent que le Sidecar est originaire de Londres, d’autres insistent qu'il est né à Paris. Chose certaine, le nom est pour honorer un capitaine de la Première Guerre mondiale qui se promenait en moto du même nom.",
       ingredients: [
-        {
-          name: 'orange',
-          quantity: 1,
-        },
-        {
-          name: 'banane',
-          quantity: 1,
-        },
+        { name: 'Perrier', quantity: 1 },
+        { name: 'Rhum', quantity: 1 },
+        { name: 'Menthe', quantity: 1 },
       ],
     },
     {
@@ -29,14 +24,9 @@ export class CocktailService {
       description:
         'Pour la cinquième année classé premier, le Old fashionned se cramponne au sommet ! C’est le roi des cocktails ! Il consiste en un sucre imbibé d’amer sur lequel on verse du whisky.',
       ingredients: [
-        {
-          name: 'orange',
-          quantity: 1,
-        },
-        {
-          name: 'banane',
-          quantity: 1,
-        },
+        { name: 'Cranberry', quantity: 1 },
+        { name: 'Citron', quantity: 1 },
+        { name: 'Vodka', quantity: 1 },
       ],
     },
     {
@@ -45,26 +35,17 @@ export class CocktailService {
       description:
         'Offrez à vos invités un petit détour par l’Espagne avec une Sangria rouge (il existe également des versions blanches et rose). ',
       ingredients: [
-        {
-          name: 'orange',
-          quantity: 1,
-        },
-        {
-          name: 'banane',
-          quantity: 1,
-        },
+        { name: 'Rhum', quantity: 1 },
+        { name: 'Triple sec', quantity: 1 },
+        { name: 'Citron', quantity: 1 },
       ],
     },
   ]);
 
-  //initialisation de selectedCocktail
-  public selectedCocktail$: BehaviorSubject<Cocktail> = new BehaviorSubject(
-    this.cocktails$.value[0]
-  );
-
-  //Notifie tout l'applicatio lors du changement de selectedCocktail$
-  public selectCocktail(index: number): void {
-    this.selectedCocktail$.next(this.cocktails$.value[index]);
+  //Retourne le detail d'un cocktail en fonction de l'index
+  public getCocktail(index: number) {
+    const cocktails = this.cocktails$.value;
+    return cocktails[index];
   }
 
   constructor() {}

@@ -15,6 +15,7 @@ import { IngredientListComponent } from './panier-container/ingredient-list/ingr
 
 //routes
 import { APP_ROUTES } from './app.routes';
+import { CococktailFormComponent } from './cococktail-form/cococktail-form.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { APP_ROUTES } from './app.routes';
     SelectedDirective,
     PanierContainerComponent,
     IngredientListComponent,
+    CococktailFormComponent,
   ],
   imports: [BrowserModule, RouterModule.forRoot(APP_ROUTES)],
   providers: [],
